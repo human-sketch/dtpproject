@@ -7,13 +7,13 @@ var = ""
 
 @app.route("/", methods=['GET', 'POST'])
 def home(): 
-    if request.method == 'POST': 
+    if request.method == 'POST':
+        
         data = request.form['name_v']
-        conn = sqlite3.connect('wallapersite.db')
-        conn = sqlite3.connect("wallpapersite.db")
+        print(data) 
+        conn = sqlite3.connect('wallpapersite.db')
         cur = conn.cursor()
-        cur.execute()                                                                                                                                                               
-        data = cur.fetchone()
+        cur.execute('INSERT INTO photos (tag) VALUES (?)', (data,))                                                                                                                                                               
     return render_template("layout.html")
 
 
