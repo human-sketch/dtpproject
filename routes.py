@@ -7,11 +7,11 @@ var = ""
 
 @app.route("/", methods=['GET', 'POST'])
 def home(): 
+    
     if request.method == 'POST':
-        
         data = request.form['name_v']
         print(data) 
-        conn = sqlite3.connect('wallpapersite.db')
+        conn = sqlite3.connect('wallpapers.db')
         cur = conn.cursor()
         cur.execute('INSERT INTO photos (tag) VALUES (?)', (data,))                                                                                                                                                               
     return render_template("layout.html")
@@ -19,7 +19,7 @@ def home():
 
 @app.route("/upload.html")
 def upload():
-    conn = sqlite3.connect("wallpapersite.db")
+    conn = sqlite3.connect("wallpapers.db")
     cur = conn.cursor()
     data = cur.execute("SELECT tag FROM photos WHERE tag='d'")                                                                                                                                                               
     data = cur.fetchone()
